@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Школа иностранных языков LinguaSchool</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<link rel="stylesheet" type="text/css" href="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\css\style.css">
+	<link rel="icon" href="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\favicon.ico">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script type="text/javascript" src="burger.js"></script>
+<style >
+	
+</style>
+</head>
+<body bgcolor="f6f6e9">
+<header class="headr">
+
+			<div class='containers'>
+
+				<div class="headrbody">
+					<a href="/" class="headrlogo">
+						<img width="600px" height="100px" src="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\logo.png" >
+					</a>
+					<div class="headrburger">
+						<span></span>
+					</div>
+					<nav class="headrmenu">
+						<ul class="headrlist">
+							<li>
+								<a href="index.html" class="headrlink">О нас</a>
+							</li>
+						
+							<li>
+								<a href="courses.html" class="headrlink">Курсы</a>
+								
+							</li>
+							<li th:if="${userRole} == 'GUEST'">
+								<a href="registration.html" class="headrlink">Войти</a>
+							</li>
+                            <li th:if="${userRole} == 'USER'">
+                                <a href="registration.html" class="headrlink">Выйти</a>
+                            </li>
+							<li th:if="${userRole} == 'GUEST'"><a href="registration.html" class="headrlink">Регистрация
+							</a>
+						</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+	<div class="wrapper">
+<div class="gallery gallery-1">
+    <div class="photo">
+    <img class="pict" src="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\pic1.png" >
+     <img class="pict" src="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\pic2.png">
+      <img class="pict" src="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\pic3.png">
+    </div>
+    <div class="prv_b"></div>
+	<div class="nxt_b"></div>
+	<script>
+		window.onload = function(e){
+
+  new Slider({
+    images: '.gallery-1 .photo img',
+    next: '.gallery-1 .nxt_b',
+    prev: '.gallery-1 .prv_b',
+    interval: '10000'
+  });
+
+  function Slider(images){     
+    this.images = document.querySelectorAll(images.images);
+    this.btPrev = document.querySelector(images.prev);
+    this.btNext = document.querySelector(images.next);
+    this.interval = images.interval;
+
+    var i = 0 ;
+
+    this.prev = function() {
+      this.images[i].className = "";
+       i--;
+       if( i < 0){
+         i = this.images.length - 1;
+       }
+       this.images[i].className = "shown";
+      },
+
+    this.next = function() {
+      this.images[i].className = "";
+      i++;
+      if( i >= this.images.length){
+        i = 0;
+      }
+      this.images[i].className = "shown";
+    }
+
+    this.btPrev.addEventListener('click', this.prev.bind(this));
+    this.btNext.addEventListener('click', this.next.bind(this));
+
+    setInterval(this.next.bind(this), this.interval);
+
+   }
+
+}
+	</script>
+ </div>
+ 
+ <div class="content">
+<div class="container">
+            <div class="row about">
+                <h1>О школе LinguaSchool</h1>
+                <p>
+                    LinguaSchool&nbsp;&mdash;  школа иностранных языков для детей ,&nbsp;подростков и взрослых. Квалифицированные преподаватели, увлекательные учебные материалы, вдохновляющая атмосфера&nbsp;&mdash; в&nbsp;LinguaSchool есть все, чтобы Вы или ваш ребенок мог получить лучшее языковое образование и&nbsp;почувствовать себя частью большого мира. Наша цель&nbsp;&mdash; сделать уроки увлекательными, вдохновить вашего ребенка учить английский и&nbsp;придать ему уверенности в&nbsp;общении.
+                </p>
+            </div>
+            <div class="row" id="advantages2">
+                <h1>Особенности обучения в LinguaSchool</h1>
+            </div>
+            <div class="row owl-carousel owl-theme" id="icon_container">
+                <div class="block">
+                    <img src="https://ef-englishfirst.ru/lp/kids/bts17/earlybird/img/group_bts17-online-6.svg" alt="">
+                    <p>
+                        Инновационные учебные материалы от&nbsp;экспертов в&nbsp;области языкового обучения детей и&nbsp;подростков.
+                    </p>
+                </div>
+                <div class="block">
+                    <img src="https://ef-englishfirst.ru/lp/kids/bts17/earlybird/img/group_bts17-online-2.svg" alt="">
+                    <p>
+                        Дружеская атмосфера в&nbsp;классе и&nbsp;современный интерьер для создания комфортной и&nbsp;безопасной среды обучения.
+                    </p>
+                </div>
+                <div class="block">
+                    <img src="https://ef-englishfirst.ru/lp/kids/bts17/earlybird/img/group_bts17-online-4.svg" alt="">
+                    <p>
+                        Свободное общение на&nbsp;иностранном языке за&nbsp;пределами класса на&nbsp;разговорных мероприятиях LinguaSchool&nbsp;Life&nbsp;Club.
+                    </p>
+                </div>
+                <div class="block">
+                    <img src="https://ef-englishfirst.ru/lp/kids/bts17/earlybird/img/group_bts17-online-1.svg" alt="">
+                    <p>
+                        Встречи с&nbsp;преподавателями, приложение для родителей и&nbsp;поддержка куратора для отслеживания прогресса ребенка. 
+                    </p>
+                </div>
+                <div class="block"></div>
+                <div class="block"></div>
+                <div class="block"></div>
+                 <div class="block"></div>
+                <div class="block"></div>
+                <div class="block"></div>
+                <div class="block"></div>
+                <div class="block"></div>
+                <div class="block"></div>
+                 <div class="block"></div>
+                <div class="block"></div>
+                <div class="block"></div>
+            </div>
+
+        <div id="about_courses">
+        
+            <div class="row">
+            <br><br><br><br>
+<br><br>
+
+            </div>
+            <div class="about_courses-container">
+            	<div class="block21"></div><h1>Программы для детей и&nbsp;взрослых</h1>
+                <div class="block4" data-position="summer">
+                    <a href="courses.html"><img src="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\en.png" alt=""></a>
+                    <p>
+                        Английский язык
+                    </p>
+                </div>
+                <div class="block4" data-position="momandme">
+                   <a href="courses.html"> <img src="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\cn.png" alt=""></a>
+                                        <p>
+                        Китайский язык
+                    </p>
+                </div>
+                <div class="block4" data-position="small_stars">
+                    <a href="courses.html"><img src="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\ger.png" alt=""></a>
+                    <p>
+                        Немецкий язык 
+                    </p>
+                </div>
+                <div class="block4" data-position="high_flyers">
+                   <a href="courses.html"> <img src="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\fr.png" alt=""></a>
+                       <p> Французский язык
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+        <!-- about_courses  -->
+        
+    <!-- teachers -->
+    <div id="school">
+        <div class="container">
+            <div>
+            	<div class="block2">
+                    <img src="https://ef-englishfirst.ru/lp/kids/bts17/earlybird/img/school_1.jpg" alt="">
+                </div>
+            	<div class="block2">
+                    <h1 class="school_h3-desc">
+                        Современные школы
+                    </h1>
+                    <p>
+                        Мы&nbsp;всегда стремимся улучшать атмосферу, в&nbsp;которой обучаются наши студенты. Каждая деталь&nbsp;&mdash; стулья, аудитории и&nbsp;само помещение&nbsp;&mdash; играют важную роль в&nbsp;создании комфортной и&nbsp;безопасной среды, благотворной для обучения.
+                    </p>
+                    <p>
+                        Интерьер школ&nbsp;LinguaSchool разрабатывает особое научно-исследовательское подразделение компании, которое изучает взаимосвязь между технологиями, дизайном и&nbsp;образованием.
+                    </p>
+                </div>
+                
+                
+            </div>
+            <div >
+                    <div class="block3">
+                    <h1>
+                        Кто наши преподаватели?
+                    </h1>
+                    <p>
+                        Преподавание иностранных языков довольно ответственная задача, поэтому мы&nbsp;внимательно подходим к&nbsp;отбору специалистов. Среди сотрудников школы&nbsp;LinguaSchool есть как русскоязычные преподаватели, так и&nbsp;носители из&nbsp;Великобритании, Германии, США и&nbsp;Китая. Все наши учителя прекрасно владеют языком, имеют педагогическое образование, солидный опыт и&nbsp;международные сертификаты, такие как TKT и&nbsp;CELTA.
+                    </p>
+                </div>
+                <div class="block3">
+                    <img src="https://ef-englishfirst.ru/lp/kids/bts17/earlybird/img/school_2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- about_courses  -->
+    
+    </div>
+    <!-- about_courses end -->
+
+</div>
+</div>
+    <!-- teachers end -->
+ <div class="footer">
+        
+        </div>
+</body>
+</html>
