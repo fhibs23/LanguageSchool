@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Курсы</title>
+	<link rel="stylesheet" type="text/css" href="C:\Users\Lena\Desktop\универ\LanguageSchool\src\main\resources\static\css\style.css">
+    <link rel="icon" href="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script type="text/javascript" src="burger.js"></script>
+<style >
+    
+</style>
+</head>
+<body bgcolor="f6f6e9">
+<header class="headr">
+
+            <div class='containers'>
+
+                <div class="headrbody">
+                    <a href="/" class="headrlogo">
+                        <img width="600px" height="100px" src="C:\Users\Lena\Desktop\универ\LanguageSchool\src\main\resources\static\images\logo.png" >
+                    </a>
+                    <div class="headrburger">
+                        <span></span>
+                    </div>
+                    <nav class="headrmenu">
+                        <ul class="headrlist">
+                            <li>
+                                <a href="index.html" class="headrlink">О нас</a>
+                            </li>
+                        
+                            <li>
+                                <a href="courses.html" class="headrlink">Курсы</a>
+                                
+                            </li>
+                            <li th:if="${userRole} == 'GUEST'">
+                                <a href="/login" class="headrlink">Войти</a>
+                            </li>
+                            <li th:if="${userRole} == 'GUEST'">
+                                <a href="/logout" class="headrlink">Выйти</a>
+                            </li>
+                            <li th:if="${userRole} == 'GUEST'"><a href="/sign" class="headrlink">Регистрация
+                            </a>
+                        </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+	<div class="wrapper">
+<div class="content-course">
+ <div class="col-sm-8 mt-4">
+                            <h3  th:text="${product.getName()}">Name</h3>
+                            <p  th:text="${product.getPrice()+' p.'}">Price</h5>
+                            <p  th:text="${product.getDescription()}">Description</h5>
+                        </div>
+            </div>
+        <form th:method="POST" th:action="@{/product}" style="display: flex;margin-top: 15px;">
+            <div class="mb-3">
+                <input type="hidden" name="productId" th:value="${product.getId()}">
+                <input id="productCount" type="number" class="form-control" name="productCount" min="1" max="100" style="width: 100px;" value="1" onchange="noEmpty()">
+            </div>
+            <div class="col-auto" style="margin-left: 15px;">
+                <button type="submit" class="btn btn-warning mb-3">Добавить в корзину</button>
+            </div>
+        </form>
+        <p th:if="${Status} == 'user_guest'">Вам нужно зарегистрироваться, чтобы добавлять товар в корзину!</p>
+        <p th:if="${Status} == 'count_overflow'">Количество одного товара в корзине не может превышать 100!</p>
+        <p th:if="${Status} == 'Ok'">Товар был добавлен в корзину</p>
+
+
+    </div>
+
+
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <title>Корзина</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" type="text/css" href="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\css\style.css">
+    <link rel="icon" href="assets\images\favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script type="text/javascript" src="burger.js"></script>
+</head>
+<body bgcolor="f6f6e9">
+<header class="headr">
+
+            <div class='containers'>
+
+                <div class="headrbody">
+                    <a href="index.html" class="headrlogo">
+                        <img width="600px" height="100px" src="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\logo.png" >
+                    </a>
+                    <div class="headrburger">
+                        <span></span>
+                    </div>
+                    <nav class="headrmenu">
+                        <ul class="headrlist">
+                            <li>
+                                <a href="index.html" class="headrlink">О нас</a>
+                            </li>
+                        
+                            <li>
+                                <a href="courses.html" class="headrlink">Курсы</a>
+                                
+                            </li>
+                            <li class="nav-item" th:if="${userRole} == 'USER'">
+                                <a href="news.html" class="headrlink">Войти</a>
+                            </li class="nav-item" th:if="${userRole} == 'GUEST'">
+                            <li><a href="registration.html" class="headrlink">Регистрация</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+<body>
+<div class="wrapper">
+<div class="content-course">
+<div class="table-responsive">
+    <h3 th:if="${basket.isEmpty() == true}" >Корзина пуста</h3>
+    <form th:if="${basket.isEmpty() == false}" th:method="POST" th:action="@{/basketOperation}">
+    <table class="table" style="margin-top: 70px">
+        <thead >
+        <tr>
+            <th scope="col" class="border-0 bg-light">
+                <div class="py-2 text-uppercase">Id</div>
+            </th>
+            <th scope="col" class="border-0 bg-light">
+                <div class="p-2 px-3 text-uppercase">Продукт</div>
+            </th>
+            <th scope="col" class="border-0 bg-light">
+                <div class="py-2 text-uppercase">Название</div>
+            </th>
+            
+            <th scope="col" class="border-0 bg-light">
+                <div class="py-2 text-uppercase">Цена</div>
+            </th>
+            
+            <th scope="col" class="border-0 bg-light">
+                <div class="py-2 text-uppercase">Удалить</div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="basket : ${basket}">
+            <input type="hidden" name="basketToDeleteId" id="basketToDeleteId">
+            <input type="hidden" th:value="${basket.getId()}" name="basketId[]">
+            <th scope="row" class="border-0">
+                <div class="p-2">
+                    <img src="" alt="" width="70" class="img-fluid rounded shadow-sm">
+                </div>
+            </th>
+
+            <td class="border-0 align-middle" th:text="${basket.getId()}"><strong>id</strong></td>
+            <td class="border-0 align-middle" th:text="${productService.getProductById(basket.getProductId()).getName()}"><strong>Name</strong></td>
+            <td class="border-0 align-middle" th:text="${productService.getProductById(basket.getProductId()).getPrice() * basket.getProductCount()} + ' р.'"><strong>price</strong></td>
+            <td class="border-0 align-middle"><button class="button11" name="delete" th:onclick="'setDeleteBasket('+ ${basket.getId()} +')'">Удалить</button></td>
+        </tr>
+
+        </tbody>
+    </table>
+    </form>
+    <h5><br>
+        Конечная стоимость:
+        <div class="text-muted" th:text="${totalPrice} + ' р.'">price</div>
+    </h5>
+</div>
+<hr th:if="${basket.isEmpty() == false}">
+<form th:if="${basket.isEmpty() == false}" class="row col-lg-4 col-sm-6" th:method="POST" th:action="@{/sendBasket}">
+    <div class="nu">
+        <label for="inputAddress" class="form-label">Почта</label>
+        <input name="address" type="text" class="form-control" id="inputAddress" required>
+    </div>
+    <div class="nu">
+        <label for="inputPhone" class="form-label">Номер телефона</label>
+        <input name="telephone" type="tel" class="form-control" id="inputPhone" required>
+    </div>
+    <div class="nu">
+        <br>
+        <button type="submit" class="button11">Оформить заказ</button>
+    </div>
+</form>
+
+<script>
+    function noEmpty(id){
+        var countEl = document.getElementById(id);
+        if (countEl.value == "") {
+            countEl.value = 1;
+        }
+    }
+    function setDeleteBasket(id){
+        document.getElementById('basketToDeleteId').value = id;
+    }
+</script>
+</div>
+</div>
+</div>
+    <!-- teachers end -->
+ <div class="footer">
+        
+        </div>
+
+</body>
+</body>
+</html>

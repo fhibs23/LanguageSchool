@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Регистрация</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	<link rel="stylesheet" type="text/css" href="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\css\style.css">
+	<link rel="icon" href="assets\images\favicon.ico">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script type="text/javascript" src="burger.js"></script>
+<style >
+	.content-course{
+		margin-left: 450px;
+	}
+	* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Roboto', sans-serif;
+}
+input {
+    height: 45px;
+    width: 100%;
+    color: #3B5983;
+    font-size: 14px;
+    line-height: 16px;
+    border: 2px solid #E9F2FF;
+    border-radius: 5px;
+    padding-left: 25px;
+}
+input:focus {
+    outline: none;
+    border: 2px solid #C1D9FD;
+}
+input:valid {
+    border-color: greenyellow;
+}
+input:invalid {
+    border-color: orange;
+}
+input:not(:focus):invalid {
+    border-color: #C1D9FD;
+}
+main {
+    background: #F1F5FE;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.circle {
+    position: absolute;
+    z-index: 1;
+    width: 2534px;
+    height: 2534px;
+    border-radius: 50%;
+    background: #F7FAFF;
+    box-shadow: 0px 4px 70px 6px rgba(217, 229, 255, 0.25);
+    animation-name: fadeCircle;
+    animation-duration: .7s;
+    animation-timing-function: ease-in-out;
+    animation-delay: .3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeCircle {
+    0% {
+        width: 2534px;
+        height: 2534px;
+    }
+    25% {
+        width: 2000px;
+        height: 2000px;
+    }
+    50% {
+        width: 1500px;
+        height: 1500px;
+    }
+    75% {
+        width: 1000px;
+        height: 1000px;
+    }
+    100% {
+        width: 534px;
+        height: 534px;
+    }
+}
+.register-form-container {
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+    max-width: 415px;
+    width: 100%;
+    background: #FFFFFF;
+    box-shadow: 0px 6px 50px rgba(217, 229, 255, 0.7);
+    border-radius: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 38px;
+    padding-bottom: 38px;
+    animation-name: fadeForm;
+    animation-duration: .7s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1.4s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+@keyframes fadeForm {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: .25;
+    }
+    50% {
+        opacity: .5;
+    }
+    75% {
+        opacity: .75;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+.form-title {
+    color: #30507D;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 23px;
+    margin-bottom: 38px;
+}
+.form-field {
+    margin-bottom: 13px;
+}
+.button {
+    width: 100%;
+    font-weight: bold;
+    font-size: 14px;
+    display:block;
+    height: 45px;
+    background: #247FFF;
+    border-radius: 5px;
+    color:#fff;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 45px;
+    cursor: pointer;
+    border: none;
+}
+.button:hover {
+    background-color: #0D6CF2;
+}
+a.button {
+    text-decoration: none;
+}
+.button-google {
+    color:#C6CFDC;
+    background: #F2F6FF;
+}
+.button-google:hover {
+    background: #E2E6F0;
+    color: #fff;
+}
+.divider {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: #405D87;
+    text-align: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+</style>
+</head>
+<body bgcolor="f6f6e9">
+<header class="headr">
+
+			<div class='containers'>
+
+				<div class="headrbody">
+					<a href="index.html" class="headrlogo">
+						<img width="600px" height="100px" src="C:\Users\Lena\Desktop\универ\КУРС2\СЕМ2\CourseWork\src\main\resources\static\images\logo.png" >
+					</a>
+					<div class="headrburger">
+						<span></span>
+					</div>
+					<nav class="headrmenu">
+						<ul class="headrlist">
+							<li>
+								<a href="index.html" class="headrlink">О нас</a>
+							</li>
+						
+							<li>
+								<a href="courses.html" class="headrlink">Курсы</a>
+								
+							</li>
+							<li>
+								<a href="news.html" class="headrlink">Войти</a>
+							</li>
+                            <li><a href="registration.html" class="headrlink">Регистрация</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</header>
+        <body>
+	<div class="wrapper">
+<div class="content-course">
+     <div class="circle"></div>
+        <div class="register-form-container">
+			<form th:method="POST" th:action="@{/sign}">
+                <h1 class="form-title">
+                    Регистрация
+                </h1>
+
+                <div class="form-fields">
+                    <div class="form-field">
+                        <input type="text" placeholder="Имя" required pattern="[а-яА-Я]+"
+                            title="Имя может содержать только буквы.">
+                    </div>
+                    <div class="form-field">
+                        <input type="email" placeholder="Почта" required>
+                    </div>
+                    <div class="form-field">
+                        <input type="password" placeholder="Пароль" required minlength="8" maxlength="128">
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button class="button">Регистрация</button>
+                </div>
+	 <h5 th:if="${Status}=='user_exists'">Пользователь с таким именем уже существует</h5>
+			</form>
+		</div>
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('id01');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+            </div>
+        
+      <!-- about_courses end -->
+</div>
+</div>
+</div>
+    <!-- teachers end -->
+ <div class="footer">
+        
+        </div>
+
+</body>
+</body>
+</html>
